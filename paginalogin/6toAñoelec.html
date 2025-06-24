@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Aulas</title>
+  <link rel="stylesheet" href="../css/claselec.css">
+</head>
+
+<body>
+
+  <div class="barra">
+    <div class="menu-activ0">
+      <p>🎓 Clase de 6to</p>
+    </div>
+
+    <div class="menu-item" onclick="mostrarContenido('noticias')">
+      <p>📰 Noticias</p>    
+    </div>
+
+    <div class="menu-item" onclick="mostrarContenido('calificaciones')">
+      <p>📊 Calificaciones</p>
+    </div>
+    <div class="menu-item">
+        <a href="electronica.html"><p>❌ Salir</p></a>
+    </div>
+  </div>
+
+  <div class="content" id="contenido-principal">
+    <h1>Bienvenido al aula virtual</h1>
+    <p>Seleccioná una sección del menú lateral para comenzar.</p>
+  </div>
+
+  <script>
+    // Función para cambiar el contenido según la sección seleccionada
+    function mostrarContenido(seccion) {
+      const contenido = document.getElementById("contenido-principal");
+  
+      if (seccion === 'noticias') {
+        contenido.innerHTML = `
+          <h1>Últimas Noticias</h1>
+          <p>Aquí podrás encontrar las noticias más recientes sobre las clases y actividades.</p>
+          <div class="noticias-container">
+  
+            <div class="noticia">
+              <img src="/assets/examen-6to.jpg" alt="Evaluación continua">
+              <div class="noticia-content">
+                <h3>Noticia 1: Nuevo sistema de evaluación continua</h3>
+                <p>A partir del próximo trimestre, los estudiantes serán evaluados mediante proyectos mensuales en lugar de exámenes tradicionales. Esta medida busca fomentar el aprendizaje activo y reducir la ansiedad académica.</p>
+                <p class="fecha">Fecha: 20 de abril de 2025</p>
+              </div>
+            </div>
+  
+            <div class="noticia">
+              <img src="/assets/taller-meditacion.jpg" alt="Taller de meditación">
+              <div class="noticia-content">
+                <h3>Noticia 2: Taller de meditación para secundaria</h3>
+                <p>El colegio lanza un nuevo taller de meditación y manejo del estrés para alumnos de secundaria. Se realizará todos los viernes a última hora como actividad optativa.</p>
+                <p class="fecha">Fecha: 18 de abril de 2025</p>
+              </div>
+            </div>
+  
+            <div class="noticia">
+              <img src="/assets/red-basquet.jpg" alt="Torneo de básquet">
+              <div class="noticia-content">
+                <h3>Noticia 3: Básquet sub-14 a semifinales</h3>
+                <p>El equipo sub-14 clasificó a semifinales del torneo intercolegial tras vencer al Colegio San Mateo. El próximo partido será este viernes a las 16:00 hrs.</p>
+                <p class="fecha">Fecha: 17 de abril de 2025</p>
+              </div>
+            </div>
+  
+          </div>
+        `;
+
+      }  else if (seccion === 'calificaciones') {
+        contenido.innerHTML = 
+        `
+          <h1>Mis Calificaciones</h1>
+          <p>A continuación se muestra la tabla de calificaciones de los 30 alumnos con sus materias correspondientes.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Alumno</th>
+                <th>Literatura</th>
+                <th>Geografia</th>
+                <th>Dispositivos Electronicos</th>
+                <th>Educación Física</th>
+                <th>Ingles</th>
+                <th>Matemática Ciclo Superior</th>
+                <th>Electronica Analogica 1</th>
+                <th>Salud y Adolescencia</th>
+                <th>Física</th>
+                <th>Electronica Digital 1</th>
+                <th>Historia</th>
+                <th>Quimica</th>
+                <th>Fundamentos de los Modelos Circuitales</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Empezamos con los primeros 5 alumnos como ejemplo -->
+              <tr>
+                <td>ramon keak</td>
+                <td>5</td>
+                <td>8</td>
+                <td>2</td>
+                <td>10</td>
+                <td>8</td>
+                <td>4</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>gerardo Alegre</td>
+                <td>7</td>
+                <td>8</td>
+                <td>8</td>
+                <td>6</td>
+                <td>8</td>
+                <td>7</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>6</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>mia Silva</td>
+                <td>9</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>9</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>9</td>
+                <td>8</td>
+                <td>9</td>
+                <td>8</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>esteban Gonzales</td>
+                <td>6</td>
+                <td>7</td>
+                <td>7</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>8</td>
+                <td>7</td>
+                <td>6</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>pepe Pimentel</td>
+                <td>8</td>
+                <td>7</td>
+                <td>8</td>
+                <td>5</td>
+                <td>8</td>
+                <td>10</td>
+                <td>8</td>
+                <td>8</td>
+                <td>2</td>
+                <td>4</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+              </tr>
+              <!-- Agregar más filas hasta completar los 30 alumnos -->
+            </tbody>
+          </table>
+        `
+      }
+    }
+  </script>
+
+
+</body>
+</html>

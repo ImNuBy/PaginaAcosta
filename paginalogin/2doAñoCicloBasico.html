@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Aulas</title>
+  <link rel="stylesheet" href="../css/claseciclobasico.css">
+</head>
+
+<body>
+
+  <div class="barra">
+    <div class="menu-activ0">
+      <p>🎓 Clase de 2do Año</p>
+    </div>
+
+    <div class="menu-item" onclick="mostrarContenido('noticias')">
+      <p>📰 Noticias</p>    
+    </div>
+
+    <div class="menu-item" onclick="mostrarContenido('calificaciones')">
+      <p>📊 Calificaciones</p>
+    </div>
+
+    <div class="menu-item">
+      <a href="ciclo-basico.html"><p>❌ Salir</p></a>
+    </div>
+  </div>
+
+  <div class="content" id="contenido-principal">
+    <h1>Bienvenido al aula virtual</h1>
+    <p>Seleccioná una sección del menú lateral para comenzar.</p>
+  </div>
+
+  <script>
+    // Función para cambiar el contenido según la sección seleccionada
+    function mostrarContenido(seccion) {
+      const contenido = document.getElementById("contenido-principal");
+
+      if (seccion === 'noticias') {
+        contenido.innerHTML = `
+          
+          <h1>Últimas Noticias</h1>
+          <p>Aquí podrás encontrar las noticias más recientes sobre las clases y actividades.</p>
+          <!-- Contenedor de noticias -->
+          <div class="noticias-container">
+            <div class="noticia">
+              <img src="/assets/taller-arte.jpg" alt="Noticia 1">
+              <div class="noticia-content">
+                <h3>Noticia 1: Estudiantes de Ciclo Básico Impulsan la Creatividad en la Asignatura de Taller de Arte</h3>
+                <p>En la Escuela Técnica "El Progreso", los alumnos de 1er y 2do año están demostrando sus habilidades creativas en la asignatura de Taller de Arte, donde aprenden técnicas de pintura, escultura y diseño gráfico.</p>
+                <p class="fecha">Fecha: 22 de mayo de 2025</p>
+              </div>
+            </div>
+
+            <div class="noticia">
+              <img src="/assets/taller-proyectos.jpg" alt="Noticia 2">
+              <div class="noticia-content">
+                <h3>Noticia 2:  Alumnos de 2º Año Construyen Sus Primeros Proyectos en el Taller</h3>
+                <p>Esta semana, los estudiantes de 2º año del Ciclo Básico comenzaron a trabajar en sus primeros proyectos prácticos dentro del taller de la escuela técnica. Con mucho entusiasmo y ganas de aprender, los chicos y chicas pusieron manos a la obra para construir maquetas, circuitos eléctricos simples y estructuras con materiales reciclados.</p>
+                <p class="fecha">Fecha: 13 de marzo de 2025</p>
+              </div>
+            </div>
+
+            <div class="noticia">
+              <img src="/assets/clase-suspendida.jpg" alt="Noticia 3">
+              <div class="noticia-content">
+                <h3>Noticia 3: Clase Suspendida, Pero No el Aprendizaje: 2º Año Aprovecha el Tiempo con Trabajo en Grupo</h3>
+                <p>El miércoles pasado, los alumnos de 2º año se encontraron con la sorpresa de que la clase de Ciencias Naturales fue suspendida por la ausencia justificada del profesor. Sin embargo, lejos de tomarlo como “hora libre”, muchos grupos decidieron quedarse en el aula y repasar juntos para el próximo examen.</p>
+                <p class="fecha">Fecha: 11 de junio de 2025</p>
+              </div>
+            </div>
+
+            <!-- Puedes agregar más noticias siguiendo el mismo formato -->
+          </div>
+        `;
+      } else if (seccion === 'calificaciones') {
+        contenido.innerHTML = `
+          <h1>Mis Calificaciones</h1>
+          <p>Consulta tus calificaciones actuales de todas las asignaturas.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Alumno</th>
+                <th>Literatura</th>
+                <th>Inglés</th>
+                <th>Politica y Ciudadania</th>
+                <th>Educación Física</th>
+                <th>Salud y Adolescencia</th>
+                <th>Historia</th>
+                <th>Geografía</th>
+                <th>Análisis Matemático</th>
+                <th>Educación Física</th>
+                <th>Modelos y Sistemas l</th>
+                <th>Programación ll</th>
+                <th>Diseño y Desarrollo Web</th>
+                <th>Arquitectura de computadoras </th>
+                <th>Base de Datos ll</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Empezamos con los primeros 5 alumnos como ejemplo -->
+              <tr>
+                <td>Jose Ingeniero</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                
+              </tr>
+              <tr>
+                <td>Alan Rubelstisnqui</td>
+                <td>7</td>
+                <td>8</td>
+                <td>6</td>
+                <td>8</td>
+                <td>7</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>6</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+
+                
+              </tr>
+              <tr>
+                <td>Richard Milos</td>
+                <td>9</td>
+                <td>8</td>
+                <td>8</td>
+                <td>9</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>9</td>
+                <td>8</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                
+              </tr>
+              <tr>
+                <td>Roberto Goas</td>
+                <td>6</td>
+                <td>7</td>
+                <td>7</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>Manuel Bermudez</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+              </tr>
+              <!-- Agregar más filas hasta completar los 30 alumnos -->
+            </tbody>
+          </table>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar producto - Tienda de Egresados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">Agregar producto a la Tienda de Egresados</h2>
+
+  <form action="../php/agregar_producto.php" method="POST" enctype="multipart/form-data">
+    <label for="nombre">Nombre del producto</label>
+    <input type="text" name="nombre" required>
+
+    <label for="descripcion">Descripción</label>
+    <textarea name="descripcion" rows="4" required></textarea>
+
+    <label for="precio">Precio (ARS)</label>
+    <input type="number" name="precio" step="0.01" required>
+
+    <label for="contacto">Contacto (mail, tel., etc.)</label>
+    <input type="text" name="contacto">
+
+    <label for="imagen">Imagen del producto</label>
+    <input type="file" name="imagen" accept="image/*">
+
+    <label><input type="checkbox" name="donacion_completa"> 100% Donación para buzos</label>
+
+    <button type="submit">Agregar producto</button>
+    <a href="galeria.php" style="display:inline-block; text-align:center; background:#ccc; padding:10px; border-radius:8px; text-decoration:none; color:black; font-weight:bold; margin-top:10px;">← Volver a la galería</a>
+    
+  </form>
+
+</body>
+</html>

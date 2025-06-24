@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+
+header {
+    margin: 0;
+    background-color: #333;
+    padding: 10px 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #b30000;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #b10000;
+}
+
+
+th {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ddd;
+}
+
+
+td {
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    color: white;
+}
+
+caption {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: rgb(185, 1, 1);
+    color: white;
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 50px;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    color: black;
+}
+
+header a:active {
+    animation: moveDown 0.3s ease forwards;
+}
+
+@keyframes moveDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}

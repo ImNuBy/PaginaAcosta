@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Aulas</title>
+  <link rel="stylesheet" href="../css/claseprog.css">
+</head>
+
+<body>
+
+    <div class="barra">
+        <div class="menu-activ0">
+          <p>🎓 Clase de 5to</p>
+        </div>
+    
+        <div class="menu-item" onclick="mostrarContenido('noticias')">
+          <p>📰 Noticias</p>    
+        </div>
+    
+        <div class="menu-item" onclick="mostrarContenido('calificaciones')">
+          <p>📊 Calificaciones</p>
+        </div>
+        <div class="menu-item">
+            <a href="programacion.html"><p>❌ Salir</p></a>
+        </div>
+      </div>
+  
+
+  <div class="content" id="contenido-principal">
+    <h1>Bienvenido al aula virtual</h1>
+    <p>Seleccioná una sección del menú lateral para comenzar.</p>
+  </div>
+
+  <script>
+    // Función para cambiar el contenido según la sección seleccionada
+    function mostrarContenido(seccion) {
+      const contenido = document.getElementById("contenido-principal");
+
+      if (seccion === 'noticias') {
+        contenido.innerHTML = `
+          <h1>Últimas Noticias</h1>
+          <p>Aquí podrás encontrar las noticias más recientes sobre las clases y actividades.</p>
+          <div class="noticias-container">
+            <div class="noticia">
+              <img src="/assets/luto.jpg" alt="Noticia 1">
+              <div class="noticia-content">
+                <h3>Noticia 1: Escuela de luto</h3>
+                <p>La escuela informa el fallecimiento del profesor Jorge Gutierrez por lo que la escuela estara de luto por dos dias en los que el establecimiento permanecera cerrado 28 al 30 de mayo. Lamentamos su partida</p>
+                <p class="fecha">Fecha: 10 de abril de 2025</p>
+              </div>
+            </div>
+
+            <div class="noticia">
+              <img src="/assets/momobox.jpg" alt="Noticia 2">
+              <div class="noticia-content">
+                <h3>Noticia 2: Nuevo profesor de Educacion Fisica</h3>
+                <p>La escuela informa que los chicos de 5to tendra un profesor nuevo debido a la renuncia del anterior profesor. El profesor sera el famoso boxeador Tito Calderon, conocido en el mundo boxistico como el fantasma de las manos de ladrillos</p>
+                <p class="fecha">Fecha: 18 de abril de 2025</p>
+              </div>
+            </div>
+
+            <div class="noticia">
+              <img src="/assets/paro.jpg" alt="Noticia 3">
+              <div class="noticia-content">
+                <h3>Noticia 3: Paro de docentes</h3>
+                <p>La escuela informa que el dia 3/5 habra un paro de docentes por lo que no habran clases durante todos los turnos.</p>
+                <p class="fecha">Fecha: 2 de abril de 2025</p>
+              </div>
+            </div>
+
+            <!-- Puedes agregar más noticias siguiendo el mismo formato -->
+          </div>
+        `;
+      } else if (seccion === 'calificaciones') {
+        contenido.innerHTML = `
+          <h1>Mis Calificaciones</h1>
+          <p>Consulta tus calificaciones actuales de todas las asignaturas.</p>
+
+    <table>
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>Literatura</th>
+            <th>Inglés</th>
+            <th>Educación Física</th>
+            <th>Política y Ciudadanía</th>
+            <th>Historia</th>
+            <th>Geografía</th>
+            <th>Análisis Matemático</th>
+            <th>Modelos y Sistemas I</th>
+            <th>Lenguajes de Programación I</th>
+            <th>Programación II</th>
+            <th>Base de Datos II</th>
+            <th>Diseño y Desarrollo Web</th>
+            <th>Arquitectura de Computadoras</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>juan Nicaragua</td>
+            <td>9</td>
+            <td>8</td>
+            <td>10</td>
+            <td>7</td>
+            <td>9</td>
+            <td>8</td>
+            <td>7</td>
+            <td>9</td>
+            <td>10</td>
+            <td>9</td>
+            <td>8</td>
+            <td>9</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>Esteban Vera</td>
+            <td>7</td>
+            <td>9</td>
+            <td>9</td>
+            <td>8</td>
+            <td>7</td>
+            <td>8</td>
+            <td>10</td>
+            <td>6</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>9</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>Leon Silva</td>
+            <td>8</td>
+            <td>7</td>
+            <td>9</td>
+            <td>8</td>
+            <td>8</td>
+            <td>9</td>
+            <td>7</td>
+            <td>9</td>
+            <td>9</td>
+            <td>8</td>
+            <td>7</td>
+            <td>10</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>Simon Bolivar</td>
+            <td>10</td>
+            <td>10</td>
+            <td>10</td>
+            <td>10</td>
+            <td>10</td>
+            <td>10</td>
+            <td>9</td>
+            <td>10</td>
+            <td>10</td>
+            <td>9</td>
+            <td>10</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>Azul Alegre</td>
+            <td>6</td>
+            <td>7</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>6</td>
+            <td>7</td>
+            <td>6</td>
+            <td>7</td>
+            <td>7</td>
+            <td>8</td>
+            <td>7</td>
+            <td>6</td>
+        </tr>
+    </tbody>
+</table>
+        `
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Aulas</title>
+  <link rel="stylesheet" href="../css/claseciclobasico.css">
+</head>
+
+<body>
+
+  <div class="barra">
+    <div class="menu-activ0">
+      <p>🎓 Clase de 1er Año</p>
+    </div>
+
+    <div class="menu-item" onclick="mostrarContenido('noticias')">
+      <p>📰 Noticias</p>    
+    </div>
+
+    <div class="menu-item" onclick="mostrarContenido('calificaciones')">
+      <p>📊 Calificaciones</p>
+    </div>
+
+    <div class="menu-item">
+      <a href="ciclo-basico.html"><p>❌ Salir</p></a>
+    </div>
+  </div>
+
+  <div class="content" id="contenido-principal">
+    <h1>Bienvenido al aula virtual</h1>
+    <p>Seleccioná una sección del menú lateral para comenzar.</p>
+  </div>
+
+  <script>
+    // Función para cambiar el contenido según la sección seleccionada
+    function mostrarContenido(seccion) {
+      const contenido = document.getElementById("contenido-principal");
+
+      if (seccion === 'noticias') {
+        contenido.innerHTML = `
+          <h1>Últimas Noticias</h1>
+          <p>Aquí podrás encontrar las noticias más recientes sobre las clases y actividades.</p>
+                    <!-- Contenedor de noticias -->
+          <div class="noticias-container">
+            <div class="noticia">
+              <img src="/assets/esplinter.jpg" alt="Noticia 1">
+              <div class="noticia-content">
+                <h3>Noticia 1: Nuevo maestro de Programación</h3>
+                <p>La escuela informa que el sr.splinter sera nuevo maestro de la materia de programación</p>
+                <p class="fecha">Fecha: 17 de agosto de 2025</p>
+              </div>
+            </div>
+
+            <div class="noticia">
+              <img src="/assets/mate.jpg" alt="Noticia 2">
+              <div class="noticia-content">
+                <h3>Noticia 2: Examen de Matematica</h3>
+                <p>El próximo examen de Matematica será el 10 de abril. Es importante que todos los alumnos repasen los temas que se hayan dado en la meteria durante el cuatrimestre.</p>
+                <p class="fecha">Fecha: 5 de abril de 2025</p>
+              </div>
+            </div>
+
+            <div class="noticia">
+              <img src="/assets/examenes.jpg" alt="Noticia 3">
+              <div class="noticia-content">
+                <h3>Noticia 3: Fecha de examenes de previas</h3>
+                <p>Se abre la mesa de examenes de las materias adeudadas. Los alumnos deben inscribirse antes del 5 de abril hasta el 14.</p>
+                <p class="fecha">Fecha: 2 de abril de 2025</p>
+              </div>
+            </div>
+
+            <!-- Puedes agregar más noticias siguiendo el mismo formato -->
+          </div>
+        `;
+      } else if (seccion === 'calificaciones') {
+        contenido.innerHTML = `
+          <h1>Mis Calificaciones</h1>
+          <p>Consulta tus calificaciones actuales de todas las asignaturas.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Alumno</th>
+                <th>Literatura</th>
+                <th>Inglés</th>
+                <th>Educación Física</th>
+                <th>Salud y Adolescencia</th>
+                <th>Historia</th>
+                <th>Geografía</th>
+                <th>Matemática Ciclo Superior</th>
+                <th>Física</th>
+                <th>Fundamentos de la Computación</th>
+                <th>Programación l</th>
+                <th>Base de Datos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Empezamos con los primeros 5 alumnos como ejemplo -->
+              <tr>
+                <td>Franco Perez</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>Emiliano Giles</td>
+                <td>7</td>
+                <td>8</td>
+                <td>6</td>
+                <td>8</td>
+                <td>7</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Ricardo Mandiat</td>
+                <td>9</td>
+                <td>8</td>
+                <td>8</td>
+                <td>9</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>9</td>
+                <td>8</td>
+                <td>9</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>Tomas Gonzales</td>
+                <td>6</td>
+                <td>7</td>
+                <td>7</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Julian Gonzales</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+              </tr>
+              <!-- Agregar más filas hasta completar los 30 alumnos -->
+            </tbody>
+          </table>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>

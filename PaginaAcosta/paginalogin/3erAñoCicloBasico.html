@@ -1,0 +1,209 @@
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Aulas</title>
+  <link rel="stylesheet" href="../css/claseciclobasico.css">
+</head>
+
+<body>
+
+  <div class="barra">
+    <div class="menu-activ0">
+      <p>🎓 Clase de 3er Año</p>
+    </div>
+
+    <div class="menu-item" onclick="mostrarContenido('noticias')">
+      <p>📰 Noticias</p>    
+    </div>
+
+    <div class="menu-item" onclick="mostrarContenido('calificaciones')">
+      <p>📊 Calificaciones</p>
+    </div>
+
+    <div class="menu-item">
+      <a href="ciclo-basico.html"><p>❌ Salir</p></a>
+    </div>
+  </div>
+
+  <div class="content" id="contenido-principal">
+    <h1>Bienvenido al aula virtual</h1>
+    <p>Seleccioná una sección del menú lateral para comenzar.</p>
+  </div>
+
+  <script>
+    // Función para cambiar el contenido según la sección seleccionada
+    function mostrarContenido(seccion) {
+      const contenido = document.getElementById("contenido-principal");
+
+      if (seccion === 'noticias') {
+        contenido.innerHTML = `
+          <h1>Últimas Noticias</h1>
+          <p>Aquí podrás encontrar las noticias más recientes sobre las clases y actividades.</p>
+                   <h1>Últimas Noticias</h1>
+          <div class="noticias-container">
+            <div class="noticia">
+              <img src="/assets/laboratorio.jpg" alt="Noticia 1">
+              <div class="noticia-content">
+                <h3>Noticia 1: Visita al Laboratorio: 3º Año Explora el Mundo de la Química</h3>
+                <p>El martes pasado, los alumnos de 3º año realizaron una práctica especial en el laboratorio de Ciencias Naturales, donde pusieron en acción sus conocimientos sobre mezclas y soluciones.</p>
+                <p class="fecha">Fecha: 22 de marzo de 2025</p>
+              </div>
+            </div>
+
+            <div class="noticia">
+              <img src="/assets/figuras-matematica.jpg" alt="Noticia 2">
+              <div class="noticia-content">
+                <h3>Noticia 2:  Geometría y Creatividad: 3º Año Diseña Figuras en Clase de Matemática</h3>
+                <p>En el marco del tema "ángulos y polígonos", los alumnos de 3º año participaron de una actividad creativa en la que debían diseñar figuras geométricas usando cartulinas, reglas y transportadores. La clase se convirtió en un espacio de trabajo colaborativo y visual, ideal para reforzar los conceptos aprendidos.</p>
+                <p class="fecha">Fecha: 19 de julio de 2025</p>
+              </div>
+            </div>
+
+            <div class="noticia">
+              <img src="/assets/examenes-finales.jpg" alt="Noticia 3">
+              <div class="noticia-content">
+                <h3>Noticia 3: Se Viene el Trimestre Final: 3º Año Se Prepara para los Exámenes</h3>
+                <p>Con la llegada del último trimestre, los estudiantes de 3º año comienzan a prepararse para las evaluaciones finales. En varias materias ya se están realizando actividades de repaso, simulacros de examen y trabajos integradores.</p>
+                <p class="fecha">Fecha: 18 de noviembre de 2025</p>
+              </div>
+            </div>
+
+            <!-- Puedes agregar más noticias siguiendo el mismo formato -->
+          </div>
+        `;
+      } else if (seccion === 'calificaciones') {
+        contenido.innerHTML = `
+          <h1>Mis Calificaciones</h1>
+          <p>Consulta tus calificaciones actuales de todas las asignaturas.</p>
+                    <table>
+            <thead>
+              <tr>
+                <th>Alumno</th>
+                <th>Literatura</th>
+                <th>Inglés</th>
+                <th>Politica y Ciudadania</th>
+                <th>Educación Física</th>
+                <th>Salud y Adolescencia</th>
+                <th>Historia</th>
+                <th>Geografía</th>
+                <th>Matemática Aplicada</th>
+                <th>Educación Física</th>
+                <th>Modelos y Sistemas ll</th>
+                <th>Programación lll</th>
+                <th>Redes y Comunicaciones</th>
+                <th>Sistemas Operativos </th>
+                <th>Arte</th>
+                <th>Ingienería de Software</th>
+                <th>Filosofía</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Empezamos con los primeros 5 alumnos como ejemplo -->
+              <tr>
+                <td>Cristiano bebelo</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>                
+              </tr>
+              <tr>
+                <td>Liam mimi</td>
+                <td>7</td>
+                <td>8</td>
+                <td>6</td>
+                <td>8</td>
+                <td>7</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>6</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                
+              </tr>
+              <tr>
+                <td>Dilan Duarte</td>
+                <td>9</td>
+                <td>8</td>
+                <td>8</td>
+                <td>9</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>9</td>
+                <td>8</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>Vivi Titi</td>
+                <td>6</td>
+                <td>7</td>
+                <td>7</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>7</td>
+                <td>6</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>Cristiana Ronalda</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+              </tr>
+              <!-- Agregar más filas hasta completar los 30 alumnos -->
+            </tbody>
+          </table>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
