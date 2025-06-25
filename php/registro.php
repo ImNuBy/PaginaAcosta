@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "escuela";
+$dbname = "colegio_marketplace";
 
 // Conexión a la base de datos
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -15,22 +15,38 @@ if ($conn->connect_error) {
 
 // Verificar si se han enviado los datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recoger los datos del formulario
-    $usuario = $_POST['usuario'];
-    $password = $_POST['password'];
+    $usuario = trim($_POST['usuario'] ?? '');
+    $password = trim($_POST['password'] ?? '');
 
-    // Consulta SQL para insertar un nuevo usuario en la base de datos
-    $sql = "INSERT INTO alumnos (usuario, password) VALUES ('$usuario', '$password')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Nuevo usuario registrado exitosamente.";
-        header("Location: ../paginalogin/login.html"); // Redirige a la página de login
-            exit();
-    } else {
-        echo "Error al registrar el usuario: " . $conn->error;
+    if (empty($usuario) || empty($password)) {
+        echo "<script>alert('Todos los campos son obligatorios'); window.history.back();</script>";
+        exit();
     }
+
+    // Verificar si ya existe el usuario
+    $stmt_check = $conn->prepare("SELECT id FROM alumnos WHERE usuario = ?");
+    $stmt_check->bind_param("s", $usuario);
+    $stmt_check->execute();
+    $stmt_check->store_result();
+
+    if ($stmt_check->num_rows > 0) {
+        echo "<script>alert('Este usuario ya existe'); window.history.back();</script>";
+        exit();
+    }
+    $stmt_check->close();
+
+    // Insertar el nuevo usuario con rol 'alumno'
+    $stmt = $conn->prepare("INSERT INTO alumnos (usuario, password, rol) VALUES (?, ?, 'alumno')");
+    $stmt->bind_param("ss", $usuario, $password);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Usuario registrado correctamente'); window.location='../paginalogin/login.html';</script>";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
 }
 
-// Cerrar la conexión a la base de datos
 $conn->close();
 ?>

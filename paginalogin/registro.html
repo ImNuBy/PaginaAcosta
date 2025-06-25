@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="../css/styleregistro.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro</title>
+  <link rel="stylesheet" href="../css/styleregistro.css" />
 </head>
 <body>
-    <div class="container">
-        <h2>Registro</h2>
-        <form action="../php/registro.php" method="POST">
-            <input type="text" name="usuario" placeholder="Nuevo usuario" required>
-            <input type="password" name="password" placeholder="Nueva contraseña" required>
-            <button type="submit">Registrar</button>
-        </form>
-    </div>
+  <div class="container">
+    <h2>Registro de Usuario</h2>
+
+    <form action="../php/registro.php" method="POST" autocomplete="off">
+      <input type="text" name="usuario" placeholder="Nuevo usuario" required maxlength="30" />
+      <input type="password" name="password" placeholder="Nueva contraseña" required minlength="4" />
+      <button type="submit">Registrar</button>
+    </form>
+
+    <p>¿Ya tenés una cuenta? <a href="login.html">Iniciar sesión</a></p>
+  </div>
 </body>
 </html>
