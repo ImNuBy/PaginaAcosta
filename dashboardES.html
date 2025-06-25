@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/DashEs.css">
+    <title>🎒 Mi Escuela - Estudiante</title>
+   
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-emoji" style="top: 10%; left: 10%; animation-delay: 0s;">🎒</div>
+        <div class="floating-emoji" style="top: 20%; right: 15%; animation-delay: 1s;">📚</div>
+        <div class="floating-emoji" style="top: 60%; left: 20%; animation-delay: 2s;">✏️</div>
+        <div class="floating-emoji" style="bottom: 20%; right: 10%; animation-delay: 3s;">🎨</div>
+        <div class="floating-emoji" style="bottom: 40%; left: 5%; animation-delay: 4s;">⭐</div>
+    </div>
+
+    <div class="header">
+        <div class="logo">
+            🏫 <span>Mi Escuelita</span>
+        </div>
+        <div class="user-info">
+            <div class="avatar" id="userAvatar">👤</div>
+            <span id="userName">Estudiante</span>
+            <a href="../php/logout.php" class="logout-btn">Salir 👋</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-card">
+            <h1>¡Hola, <span id="welcomeName">Estudiante</span>! 🌟</h1>
+            <p>¡Que tengas un día lleno de aprendizaje y diversión! 📖✨</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📝</div>
+                <span class="stat-number" id="tasksCount">5</span>
+                <div>Tareas Pendientes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <span class="stat-number" id="gradeAvg">8.5</span>
+                <div>Promedio</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <span class="stat-number" id="eventsCount">3</span>
+                <div>Eventos Próximos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <span class="stat-number" id="achievementsCount">12</span>
+                <div>Logros</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="activities-section">
+                <h2 class="section-title">🎯 Mis Actividades</h2>
+                <div class="activity-grid">
+                    <a href="../paginalogin/ciclo-basico.html" class="activity-btn">
+                        <span class="icon">📚</span>
+                        <span>Ciclo Básico</span>
+                    </a>
+                    <a href="../paginalogin/programacion.html" class="activity-btn">
+                        <span class="icon">💻</span>
+                        <span>Programación</span>
+                    </a>
+                    <a href="../paginalogin/electronica.html" class="activity-btn">
+                        <span class="icon">⚡</span>
+                        <span>Electrónica</span>
+                    </a>
+                    <button class="activity-btn" onclick="openGrades()">
+                        <span class="icon">📊</span>
+                        <span>Mis Notas</span>
+                    </button>
+                    <button class="activity-btn" onclick="openTasks()">
+                        <span class="icon">✅</span>
+                        <span>Tareas</span>
+                    </button>
+                    <button class="activity-btn" onclick="openCalendar()">
+                        <span class="icon">📅</span>
+                        <span>Calendario</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-section">
+                <div class="chat-header">
+                    <h3 class="section-title">💬 Chat Escolar</h3>
+                    <div class="role-filter">
+                        <button class="filter-btn active" data-filter="todos">Todos</button>
+                        <button class="filter-btn" data-filter="estudiante">Estudiantes</button>
+                        <button class="filter-btn" data-filter="profesor">Profesores</button>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Los mensajes se cargarán aquí -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Escribe un mensaje...">
+                    <button class="send-btn" onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class StudentDashboard {
+            constructor() {
+                this.currentFilter = 'todos';
+                this.messages = [];
+                this.user = JSON.parse(localStorage.getItem('user') || '{}');
+                this.init();
+            }
+
+            init() {
+                this.loadUserInfo();
+                this.setupEventListeners();
+                this.loadMessages();
+                this.startMessagePolling();
+            }
+
+            loadUserInfo() {
+                if (this.user.nombre_completo) {
+                    document.getElementById('userName').textContent = this.user.nombre_completo;
+                    document.getElementById('welcomeName').textContent = this.user.nombre_completo;
+                }
+
+                if (this.user.avatar_color) {
+                    const avatar = document.getElementById('userAvatar');
+                    avatar.style.backgroundColor = this.user.avatar_color;
+                    avatar.textContent = this.user.nombre_completo ? this.user.nombre_completo[0].toUpperCase() : '👤';
+                }
+            }
+
+            setupEventListeners() {
+                // Filtros de chat
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentFilter = e.target.dataset.filter;
+                        this.filterMessages();
+                    });
+                });
+
+                // Enter para enviar mensajes
+                document.getElementById('messageInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.sendMessage();
+                    }
+                });
+            }
+
+            async loadMessages() {
+                try {
+                    const response = await fetch('../api/chat/messages.php');
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        this.messages = data.messages;
+                        this.renderMessages();
+                    }
+                } catch (error) {
+                    // Simular mensajes para demo
+                    this.messages = [
+                        {
+                            id: 1,
+                            autor: 'Prof. García',
+                            rol: 'profesor',
+                            mensaje: '¡Buenos días! Recuerden que mañana tenemos examen de matemáticas 📐',
+                            timestamp: new Date(Date.now() - 3600000)
+                        },
+                        {
+                            id: 2,
+                            autor: 'Ana López',
+                            rol: 'estudiante',
+                            mensaje: '¿Alguien tiene los apuntes de historia? 📚',
+                            timestamp: new Date(Date.now() - 1800000)
+                        },
+                        {
+                            id: 3,
+                            autor: 'Director Martín',
+                            rol: 'admin',
+                            mensaje: 'El próximo viernes no habrá clases por jornada pedagógica 🏫',
+                            timestamp: new Date(Date.now() - 900000)
+                        }
+                    ];
+                    this.renderMessages();
+                }
+            }
+
+            renderMessages() {
+                const chatMessages = document.getElementById('chatMessages');
+                const filteredMessages = this.messages.filter(msg => 
+                    this.currentFilter === 'todos' || msg.rol === this.currentFilter
+                );
+
+                chatMessages.innerHTML = filteredMessages.map(msg => `
+                    <div class="message">
+                        <div class="message-header">
+                            <span class="message-author">${msg.autor}</span>
+                            <span class="message-role">${this.getRoleEmoji(msg.rol)} ${msg.rol}</span>
+                            <span class="message-time">${this.formatTime(msg.timestamp)}</span>
+                        </div>
+                        <div class="message-content">${msg.mensaje}</div>
+                    </div>
+                `).join('');
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            filterMessages() {
+                this.renderMessages();
+            }
+
+            async sendMessage() {
+                const input = document.getElementById('messageInput');
+                const mensaje = input.value.trim();
+
+                if (!mensaje) return;
+
+                const newMessage = {
+                    id: Date.now(),
+                    autor: this.user.nombre_completo || this.user.username,
+                    rol: this.user.rol,
+                    mensaje: mensaje,
+                    timestamp: new Date()
+                };
+
+                try {
+                    const response = await fetch('../api/chat/send.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newMessage)
+                    });
+
+                    if (response.ok) {
+                        this.messages.push(newMessage);
+                        this.renderMessages();
+                        input.value = '';
+                    }
+                } catch (error) {
+                    // Para demo, agregar localmente
+                    this.messages.push(newMessage);
+                    this.renderMessages();
+                    input.value = '';
+                }
+            }
+
+            startMessagePolling() {
+                setInterval(() => {
+                    this.loadMessages();
+                }, 5000); // Actualizar cada 5 segundos
+            }
+
+            getRoleEmoji(rol) {
+                const emojis = {
+                    'estudiante': '🎒',
+                    'profesor': '👨‍🏫',
+                    'admin': '👔'
+                };
+                return emojis[rol] || '👤';
+            }
+
+            formatTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diff = now - date;
+
+                if (diff < 60000) return 'ahora';
+                if (diff < 3600000) return `${Math.floor(diff / 60000)}m`;
+                if (diff < 86400000) return `${Math.floor(diff / 3600000)}h`;
+                return date.toLocaleDateString();
+            }
+        }
+
+        // Funciones globales
+        function openGrades() {
+            alert('🎉 ¡Próximamente! Sistema de calificaciones en desarrollo');
+        }
+
+        function openTasks() {
+            alert('📝 ¡Próximamente! Sistema de tareas en desarrollo');
+        }
+
+        function openCalendar() {
+            alert('📅 ¡Próximamente! Calendario escolar en desarrollo');
+        }
+
+        function sendMessage() {
+            window.dashboard.sendMessage();
+        }
+
+        // Inicializar dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            window.dashboard = new StudentDashboard();
+        });
+    </script>
+</body>
+</html>

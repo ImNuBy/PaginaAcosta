@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dashad.css">
+    <title>👔 Mi Escuela - Administrador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-emoji" style="top: 10%; left: 5%; animation-delay: 0s;">👔</div>
+        <div class="floating-emoji" style="top: 20%; right: 10%; animation-delay: 1s;">📊</div>
+        <div class="floating-emoji" style="top: 60%; left: 15%; animation-delay: 2s;">🏫</div>
+        <div class="floating-emoji" style="bottom: 20%; right: 5%; animation-delay: 3s;">📈</div>
+        <div class="floating-emoji" style="bottom: 40%; left: 8%; animation-delay: 4s;">⚙️</div>
+        <div class="floating-emoji" style="top: 40%; right: 20%; animation-delay: 5s;">📋</div>
+    </div>
+
+    <div class="header">
+        <div class="logo">
+            🏢 <span>Panel Administrativo</span>
+        </div>
+        <div class="user-info">
+            <div class="avatar" id="userAvatar">👔</div>
+            <span id="userName">Administrador</span>
+            <a href="../php/logout.php" class="logout-btn">Salir 👋</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-card">
+            <h1>¡Buen día, <span id="welcomeName">Administrador</span>! 🌟</h1>
+            <p>¡Gestionando con excelencia nuestra institución educativa! 🏫✨</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <span class="stat-number" id="totalUsers">245</span>
+                <div>Total Usuarios</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎒</div>
+                <span class="stat-number" id="studentsTotal">180</span>
+                <div>Estudiantes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👨‍🏫</div>
+                <span class="stat-number" id="teachersTotal">25</span>
+                <div>Profesores</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <span class="stat-number" id="coursesTotal">15</span>
+                <div>Cursos Activos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <span class="stat-number" id="systemHealth">98%</span>
+                <div>Salud del Sistema</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💬</div>
+                <span class="stat-number" id="messagesTotal">1.2K</span>
+                <div>Mensajes Hoy</div>
+            </div>
+        </div>
+
+        <div class="admin-grid">
+            <div class="admin-tools">
+                <div class="section">
+                    <h2 class="section-title">🛠️ Gestión de Usuarios</h2>
+                    <div class="tool-grid">
+                        <button class="tool-btn" onclick="createUser()">
+                            <span class="icon">➕</span>
+                            <span>Crear Usuario</span>
+                        </button>
+                        <button class="tool-btn" onclick="manageRoles()">
+                            <span class="icon">👤</span>
+                            <span>Roles</span>
+                        </button>
+                        <button class="tool-btn" onclick="viewReports()">
+                            <span class="icon">📊</span>
+                            <span>Reportes</span>
+                        </button>
+                        <button class="tool-btn" onclick="bulkActions()">
+                            <span class="icon">⚡</span>
+                            <span>Acciones Masivas</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">⚙️ Configuración Sistema</h2>
+                    <div class="tool-grid">
+                        <button class="tool-btn" onclick="systemSettings()">
+                            <span class="icon">⚙️</span>
+                            <span>Configuración</span>
+                        </button>
+                        <button class="tool-btn" onclick="backup()">
+                            <span class="icon">💾</span>
+                            <span>Backup</span>
+                        </button>
+                        <button class="tool-btn" onclick="security()">
+                            <span class="icon">🔒</span>
+                            <span>Seguridad</span>
+                        </button>
+                        <button class="tool-btn" onclick="maintenance()">
+                            <span class="icon">🔧</span>
+                            <span>Mantenimiento</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">📈 Análisis y Estadísticas</h2>
+                    <div class="tool-grid">
+                        <button class="tool-btn" onclick="analytics()">
+                            <span class="icon">📈</span>
+                            <span>Analytics</span>
+                        </button>
+                        <button class="tool-btn" onclick="performance()">
+                            <span class="icon">⚡</span>
+                            <span>Rendimiento</span>
+                        </button>
+                        <button class="tool-btn" onclick="logs()">
+                            <span class="icon">📝</span>
+                            <span>Logs</span>
+                        </button>
+                        <button class="tool-btn" onclick="monitoring()">
+                            <span class="icon">👁️</span>
+                            <span>Monitoreo</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">👥 Usuarios Recientes</h2>
+                    <div class="user-management">
+                        <div class="user-item">
+                            <div class="user-info">
+                                <h4>María González</h4>
+                                <p>Estudiante • Creado hace 2 horas</p>
+                            </div>
+                            <div class="user-actions">
+                                <button class="btn-small">Ver</button>
+                                <button class="btn-small btn-warning">Editar</button>
+                            </div>
+                        </div>
+                        <div class="user-item">
+                            <div class="user-info">
+                                <h4>Prof. Rodríguez</h4>
+                                <p>Profesor • Último acceso: hace 1h</p>
+                            </div>
+                            <div class="user-actions">
+                                <button class="btn-small">Ver</button>
+                                <button class="btn-small btn-warning">Editar</button>
+                            </div>
+                        </div>
+                        <div class="user-item">
+                            <div class="user-info">
+                                <h4>Carlos Pérez</h4>
+                                <p>Estudiante • Inactivo 7 días</p>
+                            </div>
+                            <div class="user-actions">
+                                <button class="btn-small">Ver</button>
+                                <button class="btn-small btn-danger">Suspender</button>
+                            </div>
+                        </div>
+                        <div class="user-item">
+                            <div class="user-info">
+                                <h4>Ana López</h4>
+                                <p>Profesor • Nuevo usuario</p>
+                            </div>
+                            <div class="user-actions">
+                                <button class="btn-small">Activar</button>
+                                <button class="btn-small btn-warning">Configurar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-section">
+                <div class="chat-header">
+                    <h3 class="section-title">💬 Chat Administrativo</h3>
+                    <div class="role-filter">
+                        <button class="filter-btn active" data-filter="todos">Todos</button>
+                        <button class="filter-btn" data-filter="admin">Admins</button>
+                        <button class="filter-btn" data-filter="profesor">Profesores</button>
+                        <button class="filter-btn" data-filter="estudiante">Estudiantes</button>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Los mensajes se cargarán aquí -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Mensaje administrativo...">
+                    <button class="send-btn" onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="system-alerts">
+            <h2 class="section-title">🚨 Alertas del Sistema</h2>
+            <div class="alert-item">
+                <strong>🔴 Crítico:</strong> Espacio en disco bajo (15% disponible)
+            </div>
+            <div class="alert-item warning">
+                <strong>🟡 Advertencia:</strong> 3 usuarios intentos de login fallidos
+            </div>
+            <div class="alert-item success">
+                <strong>🟢 Éxito:</strong> Backup automático completado exitosamente
+            </div>
+            <div class="alert-item info">
+                <strong>🔵 Info:</strong> Actualización del sistema programada para este fin de semana
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class AdminDashboard {
+            constructor() {
+                this.currentFilter = 'todos';
+                this.messages = [];
+                this.user = JSON.parse(localStorage.getItem('user') || '{}');
+                this.init();
+            }
+
+            init() {
+                this.loadUserInfo();
+                this.setupEventListeners();
+                this.loadMessages();
+                this.startMessagePolling();
+                this.loadStats();
+                this.startSystemMonitoring();
+            }
+
+            loadUserInfo() {
+                if (this.user.nombre_completo) {
+                    document.getElementById('userName').textContent = this.user.nombre_completo;
+                    document.getElementById('welcomeName').textContent = this.user.nombre_completo;
+                }
+
+                if (this.user.avatar_color) {
+                    const avatar = document.getElementById('userAvatar');
+                    avatar.style.backgroundColor = this.user.avatar_color;
+                    avatar.textContent = this.user.nombre_completo ? this.user.nombre_completo[0].toUpperCase() : '👔';
+                }
+            }
+
+            setupEventListeners() {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentFilter = e.target.dataset.filter;
+                        this.filterMessages();
+                    });
+                });
+
+                document.getElementById('messageInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.sendMessage();
+                    }
+                });
+            }
+
+            async loadMessages() {
+                try {
+                    const response = await fetch('../api/chat/messages.php');
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        this.messages = data.messages;
+                        this.renderMessages();
+                    }
+                } catch (error) {
+                    // Mensajes de demo para administradores
+                    this.messages = [
+                        {
+                            id: 1,
+                            autor: 'Sistema',
+                            rol: 'admin',
+                            mensaje: '🔧 Mantenimiento programado completado exitosamente',
+                            timestamp: new Date(Date.now() - 10800000)
+                        },
+                        {
+                            id: 2,
+                            autor: 'Prof. García',
+                            rol: 'profesor',
+                            mensaje: 'Solicito acceso al módulo de reportes avanzados 📊',
+                            timestamp: new Date(Date.now() - 5400000)
+                        },
+                        {
+                            id: 3,
+                            autor: 'María Estudiante',
+                            rol: 'estudiante',
+                            mensaje: '¿Cómo puedo recuperar mi contraseña? 🔑',
+                            timestamp: new Date(Date.now() - 3600000)
+                        },
+                        {
+                            id: 4,
+                            autor: 'Admin López',
+                            rol: 'admin',
+                            mensaje: 'Nuevas políticas de seguridad implementadas 🔒',
+                            timestamp: new Date(Date.now() - 1800000)
+                        }
+                    ];
+                    this.renderMessages();
+                }
+            }
+
+            renderMessages() {
+                const chatMessages = document.getElementById('chatMessages');
+                const filteredMessages = this.messages.filter(msg => 
+                    this.currentFilter === 'todos' || msg.rol === this.currentFilter
+                );
+
+                chatMessages.innerHTML = filteredMessages.map(msg => `
+                    <div class="message">
+                        <div class="message-header">
+                            <span class="message-author">${msg.autor}</span>
+                            <span class="message-role">${this.getRoleEmoji(msg.rol)} ${msg.rol}</span>
+                            <span class="message-time">${this.formatTime(msg.timestamp)}</span>
+                        </div>
+                        <div class="message-content">${msg.mensaje}</div>
+                    </div>
+                `).join('');
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            filterMessages() {
+                this.renderMessages();
+            }
+
+            async sendMessage() {
+                const input = document.getElementById('messageInput');
+                const mensaje = input.value.trim();
+
+                if (!mensaje) return;
+
+                const newMessage = {
+                    id: Date.now(),
+                    autor: this.user.nombre_completo || this.user.username,
+                    rol: this.user.rol,
+                    mensaje: mensaje,
+                    timestamp: new Date()
+                };
+
+                try {
+                    const response = await fetch('../api/chat/send.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newMessage)
+                    });
+
+                    if (response.ok) {
+                        this.messages.push(newMessage);
+                        this.renderMessages();
+                        input.value = '';
+                    }
+                } catch (error) {
+                    this.messages.push(newMessage);
+                    this.renderMessages();
+                    input.value = '';
+                }
+            }
+
+            startMessagePolling() {
+                setInterval(() => {
+                    this.loadMessages();
+                }, 5000);
+            }
+
+            loadStats() {
+                // Simular carga de estadísticas administrativas
+                setTimeout(() => {
+                    document.getElementById('totalUsers').textContent = Math.floor(Math.random() * 50) + 200;
+                    document.getElementById('studentsTotal').textContent = Math.floor(Math.random() * 30) + 150;
+                    document.getElementById('teachersTotal').textContent = Math.floor(Math.random() * 10) + 20;
+                    document.getElementById('coursesTotal').textContent = Math.floor(Math.random() * 5) + 12;
+                    document.getElementById('systemHealth').textContent = (95 + Math.random() * 5).toFixed(1) + '%';
+                    document.getElementById('messagesTotal').textContent = (Math.random() * 0.8 + 1.0).toFixed(1) + 'K';
+                }, 1000);
+            }
+
+            startSystemMonitoring() {
+                // Simular monitoreo del sistema
+                setInterval(() => {
+                    const health = (95 + Math.random() * 5).toFixed(1);
+                    document.getElementById('systemHealth').textContent = health + '%';
+                }, 30000);
+            }
+
+            getRoleEmoji(rol) {
+                const emojis = {
+                    'estudiante': '🎒',
+                    'profesor': '👨‍🏫',
+                    'admin': '👔'
+                };
+                return emojis[rol] || '👤';
+            }
+
+            formatTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diff = now - date;
+
+                if (diff < 60000) return 'ahora';
+                if (diff < 3600000) return `${Math.floor(diff / 60000)}m`;
+                if (diff < 86400000) return `${Math.floor(diff / 3600000)}h`;
+                return date.toLocaleDateString();
+            }
+        }
+
+        // Funciones específicas del administrador
+        function createUser() {
+            alert('➕ Creador de usuarios - ¡En desarrollo!');
+        }
+
+        function manageRoles() {
+            alert('👤 Gestor de roles y permisos - ¡Próximamente!');
+        }
+
+        function viewReports() {
+            alert('📊 Sistema de reportes avanzados - ¡En desarrollo!');
+        }
+
+        function bulkActions() {
+            alert('⚡ Acciones masivas - ¡Próximamente!');
+        }
+
+        function systemSettings() {
+            alert('⚙️ Configuración del sistema - ¡En desarrollo!');
+        }
+
+        function backup() {
+            alert('💾 Sistema de backup - ¡Próximamente!');
+        }
+
+        function security() {
+            alert('🔒 Panel de seguridad - ¡En desarrollo!');
+        }
+
+        function maintenance() {
+            alert('🔧 Modo mantenimiento - ¡Próximamente!');
+        }
+
+        function analytics() {
+            alert('📈 Analytics avanzados - ¡En desarrollo!');
+        }
+
+        function performance() {
+            alert('⚡ Monitor de rendimiento - ¡Próximamente!');
+        }
+
+        function logs() {
+            alert('📝 Visor de logs del sistema - ¡En desarrollo!');
+        }
+
+        function monitoring() {
+            alert('👁️ Monitoreo en tiempo real - ¡Próximamente!');
+        }
+
+        function sendMessage() {
+            window.dashboard.sendMessage();
+        }
+
+        // Inicializar dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            window.dashboard = new AdminDashboard();
+        });
+    </script>
+</body>
+</html>
