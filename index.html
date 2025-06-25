@@ -405,22 +405,7 @@
             }
         }
 
-        // Configuración de interceptores para fetch
-        const originalFetch = window.fetch;
-        window.fetch = function(...args) {
-            return originalFetch.apply(this, args)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response;
-                })
-                .catch(error => {
-                    handleNetworkError(error);
-                    throw error;
-                });
-        };
-
+    
         // Función para logout global
         window.logout = function() {
             showLoading();
