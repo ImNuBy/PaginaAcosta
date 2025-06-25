@@ -1,40 +1,50 @@
 <?php
-session_start();
+/**
+ * Manejo de Login - php/login.php
+ */
 
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "colegio_marketplace";
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
 
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-if (!$conn) {
-    die("No hay conexión: " . mysqli_connect_error());
+// Verificar método
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+    exit;
 }
 
-$nombre = $_POST["txtusuario"] ?? '';
-$pass = $_POST["txtpassword"] ?? '';
+require_once '../config.php';
+require_once '../auth.php';
 
-$nombre = mysqli_real_escape_string($conn, $nombre);
-$pass = mysqli_real_escape_string($conn, $pass);
-
-$query = mysqli_query($conn, "SELECT * FROM alumnos WHERE usuario = '$nombre' AND password = '$pass'");
-$nr = mysqli_num_rows($query);
-
-if ($nr == 1) {
-    $usuario = mysqli_fetch_assoc($query);
+try {
+    // Obtener datos JSON
+    $input = file_get_contents('php://input');
+    $data = json_decode($input, true);
     
-    $_SESSION['usuario'] = $usuario['usuario'];
-    $_SESSION['rol'] = $usuario['rol'];
-
-    echo "<script>
-            alert('¡Bienvenido " . $usuario['usuario'] . "!');
-            window.location.href = '../paginalogin/aulas.html';
-          </script>";
-} else {
-    echo "<script>
-            alert('Usuario o contraseña incorrectos');
-            window.location= '../paginalogin/login.html';
-          </script>";
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new Exception('Datos JSON inválidos');
+    }
+    
+    // Validar campos requeridos
+    if (empty($data['usuario']) || empty($data['password']) || empty($data['rol'])) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Todos los campos son requeridos'
+        ]);
+        exit;
+    }
+    
+    // Intentar login
+    $result = $auth->login($data['usuario'], $data['password'], $data['rol']);
+    echo json_encode($result);
+    
+} catch (Exception $e) {
+    error_log("Error en login: " . $e->getMessage());
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error del sistema: ' . $e->getMessage()
+    ]);
 }
 ?>
